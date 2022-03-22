@@ -3,5 +3,6 @@ version: '3.4'
 services:
   basapp:
     build: .docker/
-    working_dir: /var/www/
-
+    working_dir: /usr/src/myapp
+    volumes:
+      - ./:/usr/src/myapp

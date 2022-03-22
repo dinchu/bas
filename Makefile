@@ -7,10 +7,6 @@ help:	## Show this help
 	@echo ""
 .PHONY: help
 
-execute: ## execute app
-	 docker run -it --rm --name my-running-app my-php-ap
-.PHONY: shell
-
 down:	## Stop the docker containers for local development
 	docker-compose down
 .PHONY: down
@@ -18,4 +14,8 @@ down:	## Stop the docker containers for local development
 up:	## Start the docker containers for local development
 	docker-compose up -d
 .PHONY: up
+
+build:	## Start the docker containers for local development
+	docker build -t basapp .docker
+.PHONY: build
 
