@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  basapp:
+    build: .docker/
+    working_dir: /var/www/
+
