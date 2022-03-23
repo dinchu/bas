@@ -18,10 +18,12 @@ The idea is to make a fast php CLI app to calculate salary dates given a set of 
 ### Executing program
 
 * How to run the program
-* Step-by-step bullets
+* go to the directory of the project and execute  the following commands
 ```
-code blocks for commands
+make build
+make exec
 ```
+You will be able to type in the console
 
 ## Help
 
@@ -32,7 +34,4 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Pablo Delgado

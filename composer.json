@@ -13,5 +13,7 @@
             "email": "dinchu@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-readline": "*"
+    }
 }

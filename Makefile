@@ -6,8 +6,12 @@ help:	## Show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 	@echo ""
 .PHONY: help
-execute: ## execute app -a stdin
-	 docker run -it --rm -v ./:/usr/src/myapp --name basappInstance basapp
+execute-win: ## execute the app in a windows environment under powershell
+	 docker run -it --rm  -v ${PWD}:/usr/src/myapp --name basappInstance basapp
+.PHONY: execute
+
+execute-unix: ## execute the app in a unix environment under powershell
+	 docker run -it --rm  -v $(pwd):/usr/src/myapp --name basappInstance basapp
 .PHONY: execute
 
 exec:	## Start the docker containers for local development
