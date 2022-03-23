@@ -2,6 +2,9 @@
 namespace App;
 
 
+use App\Models\Bonus;
+use App\Models\Salary;
+
 class Application
 {
     private static Application $instance;
@@ -37,7 +40,7 @@ class Application
     }
 
     /**
-     *
+     * Main function
      * @return void
      */
     public function execute() : void
@@ -71,16 +74,18 @@ class Application
      */
     private function processSalaryDates(): void
     {
-        for ($month = $this->currentMonth; $month <= 12; $month++) {
-
-            $salary   = getLastWorkingDateInMonth($month, $this->currentYear);
-            $bonus    = getWorkingDayInQuarter($month, $this->currentYear);
+        $bonusModel  = new Bonus();
+        $salaryModel = new Salary();
+        for ($month = $this->currentMonth; $month <= 12; $month++)
+        {
+            $salaryDate   = $salaryModel->getPaymentDate($month, $this->currentYear);
+            $bonusDate    = $bonusModel->getPaymentDate($month, $this->currentYear);
             $output = [
-                $salary->format('M'),
-                $salary->format('D d'),
-                $bonus->format('D d')
+                $salaryDate->format('M'),
+                $salaryDate->format('D d'),
+                $bonusDate->format('D d')
             ];
-            fputcsv($this->fp, $output);
+            $this->writeToCsv($output);
         }
     }
 
