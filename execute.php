@@ -1,26 +1,39 @@
 <?php
 
-    $fileName = readline("Enter the file name (optional)  ");
-
     $year = date('Y');
-
-    if (empty($fileName)) {
-        $fileName = "salary_schedule_{$year}.csv";
+    $fileName = readline("Enter the file name (optional)  ");
+    //check if the name is valid
+    if (!empty($fileName) && !is_valid_name($fileName)) {
+        die('You need to specify a valid filename');
     }
 
+    if (empty($fileName)) {
+        $fileName = "salary_schedule_{$year}";
+    }
+
+    $fp = fopen("output/{$fileName}.csv", 'w');
+    $csvHeader = [
+        'month', 'salary payment date', 'bonus payment date'
+    ];
+    fputcsv($fp, $csvHeader);
     for ($month = 1; $month<=12; $month++) {
 
-        $salary   = getLastWorkingDateInMonth($month, 2022);
-        $bonus    = getWorkingDayInQuarter($month, 2022);
-        $output[] = [
+        $salary   = getLastWorkingDateInMonth($month, $year);
+        $bonus    = getWorkingDayInQuarter($month, $year);
+        $output = [
             $salary->format('M'),
             $salary->format('D d'),
             $bonus->format('D d')
         ];
+        fputcsv($fp, $output);
 
     }
-    createCsv($output);
-    var_dump($output);
+    fclose($fp);
+
+
+    function is_valid_name($file) {
+        return preg_match('/^([-\.\w]+)$/', $file) > 0;
+    }
 
     /**
      * This method finds the last working day in a given month/year
@@ -74,11 +87,8 @@
 
     }
 
-    function createCsv(array $data): bool {
-        $fileName = 'output/salary.csv';
-        $csvHeader = [
-            'month', 'salary payment date', 'bonus payment date'
-        ];
-        $data = array_merge($csvHeader, $data);
+    function appendToCsv(array $data, string $fileName): bool {
+
+
         fputcsv($fileName, $data);
     }
