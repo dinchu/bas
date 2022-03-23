@@ -1,0 +1,17 @@
+{
+    "name": "pablo/bas",
+    "description": "test",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Pablo\\Bas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pablo Delgado",
+            "email": "dinchu@gmail.com"
+        }
+    ],
+    "require": {}
+}
