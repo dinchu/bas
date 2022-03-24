@@ -8,12 +8,6 @@ use App\PayrollRules;
 class Salary extends PayrollRules
 {
 
-    public function __construct()
-    {
-        $this->currentYear  = date('Y');
-        $this->currentMonth = date('m');
-    }
-
     /**
      * This method finds the last working day in a given month/year
      * Using relative formats to modify the dates. read more here

@@ -6,10 +6,10 @@ class ConsoleHandler
 {
     /**
      * The function reads the console and validates the user input
-     * @param $year
+     * @param int $year
      * @return Application
      */
-    public function getFilename($year): string
+    public function getFilename(int $year): string
     {
         $fileName = readline("Enter the file name (optional)  ");
         //check if the name is valid
@@ -32,5 +32,15 @@ class ConsoleHandler
     private function isFilenameValid(string $userInput) : bool
     {
         return preg_match('/^([-\.\w]+)$/', $userInput) > 0;
+    }
+
+    /**
+     * The function reads the console and validates the user input
+     * @param string $text
+     * @return void
+     */
+    public function printToConsole(string $text): void
+    {
+        echo $text;
     }
 }

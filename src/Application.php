@@ -47,7 +47,7 @@ class Application
     {
         //handles the CLI input
         $consoleHandler = new ConsoleHandler();
-        $this->fileName = self::DEFAULT_FOLDER . $consoleHandler->getFilename($this->currentYear) . 'csv';
+        $this->fileName = self::DEFAULT_FOLDER . DIRECTORY_SEPARATOR . $consoleHandler->getFilename($this->currentYear) . '.csv';
 
         $this->writeToCsv(
             [
@@ -57,6 +57,7 @@ class Application
 
         $this->processSalaryDates();
 
+        $consoleHandler->printToConsole("the process finished. The payroll file can be found in {$this->fileName}");
     }
 
     /**
@@ -70,6 +71,7 @@ class Application
     }
 
     /**
+     * Handles the process iterating month by month for the current year
      * @return void
      */
     private function processSalaryDates(): void
@@ -97,7 +99,6 @@ class Application
         if (!isset($this->fp)) {
             $this->fp = fopen($this->fileName, 'w');
         }
-
     }
 
     public function __destruct()
