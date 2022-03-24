@@ -3,6 +3,7 @@
     "description": "test",
     "type": "project",
     "autoload": {
+        "classmap": ["src"],
         "psr-4": {
             "Pablo\\Bas\\": "src/"
         }
