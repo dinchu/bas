@@ -24,6 +24,11 @@ The idea is to make a fast php CLI app to calculate salary dates given a set of 
 
 * How to run the program
 * go to the directory of the project and execute  the following commands
+
+```
+composer install
+```
+
 ```
 make build
 ```
